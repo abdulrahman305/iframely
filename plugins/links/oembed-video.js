@@ -40,6 +40,11 @@ export default {
         } else { 
             player.html = oembed.html; // will render in an iframe
             player.type = CONFIG.T.text_html;
+
+            if (whitelistRecord.isAllowed('oembed.video', 'ssl')) {
+                player.html = player.html.replace(/http:\/\//g, 'https://');
+                player.rel.push(CONFIG.R.ssl);
+            }
         }
 
         if (whitelistRecord.isAllowed('oembed.video', 'responsive') && oembed.width && oembed.height) {
@@ -61,6 +66,10 @@ export default {
             player.rel = player.rel.concat(iframe.allow.replace(/autoplay;?\s?\*?/ig, '').split(/\s?\*?(?:;|,)\s?\*?/g));
         }
 
+        if (iframe && iframe.allowfullscreen === '' && player.rel.indexOf('fullscreen') === -1) {
+            player.rel.push('fullscreen');
+        }
+
         if (player.href && whitelistRecord.isAllowed('oembed.video', "accept") && player.type === CONFIG.T.text_html) {
             player.accept = player.type;
             delete player.type;
@@ -71,8 +80,7 @@ export default {
     },
 
     getMeta: function(oembed, whitelistRecord) {
-
-        if (!whitelistRecord.isAllowed('oembed.video') && (oembed.type === "video" || oembed.type === "audio")) {
+        if (whitelistRecord.isAllowed('oembed.video') && (oembed.type === "video" || oembed.type === "audio")) {
             return {
                 medium: oembed.type
             };

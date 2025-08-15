@@ -35,9 +35,17 @@ export default {
 
             var file = {
                 rel: [CONFIG.R.file],
-                href: schemaFileObject.embedURL || schemaFileObject.embedUrl,
-                accept: CONFIG.T.text_html
+                href: schemaFileObject.embedURL || schemaFileObject.embedUrl                
             };
+
+            if (schemaFileObject.type) {
+                file.type = schemaFileObject.type;
+            } else if (urlMatch[1] === "forms" && !schemaFileObject.height) {
+                // form requires a login, validation will redirect to login page with x-frame-options
+                file.type = CONFIG.T.text_html;
+            } else {
+                file.accept = CONFIG.T.text_html;
+            }
 
             if (schemaFileObject.playerType) {
 
@@ -54,15 +62,13 @@ export default {
                     file.message = "If there's an extra vertical space, it is used up on next step (after \"Next\" is clicked in the form).";
                 }
 
-                // "App" to prevent Google Forms be presented as Player through Twitter-player mixin as Player prevails on Readers
-                file.rel.push (CONFIG.R.app);
+                file.rel.push (CONFIG.R.survey);
                 // Make forms resizeable
                 file.rel.push (CONFIG.R.resizable);
 
             } else if (urlMatch[1] === "forms" || urlMatch[1] === "document" || urlMatch[1] === "file") {
                 file["aspect-ratio"] = CONFIG.DOC_ASPECT_RATIO;
-                // "App" to prevent Google Forms be presented as Player through Twitter-player mixin as Player prevails on Readers
-                file.rel.push (urlMatch[1] === "forms" ? CONFIG.R.app : CONFIG.R.reader);
+                file.rel.push (urlMatch[1] === "forms" ? CONFIG.R.survey : CONFIG.R.reader);
 
             /// } else if (urlMatch[1] === "file" && schemaFileObject.playerType) {
 
@@ -141,18 +147,19 @@ export default {
             return cb(null, {
                 schemaFileObject: result
             });
-        } else if (/\/(pub|pubhtml|viewform|mobilebasic|htmlview)(\?[^\?\/]+)?(?:#.*)?$/i.test(url)) {
+
+        } else if (/\/(pub|pubhtml|mobilebasic|htmlview)(\?[^\?\/]+)?(?:#.*)?$/i.test(url)) {
             return cb(null, {
                 schemaFileObject: {
                     embedUrl: url
-                }  
+                }
             });
         } else if (/\/pubchart(\?[^\?\/]+)?(?:#.*)?$/i.test(url)) {
             return cb({
                 responseStatusCode: 415,
                 message: 'Google speadsheet charts are fixed-size and cannot be supported. Try linking yours as an image.'
             })            
-        } else if (!meta.og) {
+        } else if (!meta.og && /docs\.google\.com/.test(url) && !options.getRequestOptions('google.enable_private')) {
             return cb({
                 responseStatusCode: 415,
                 message: 'Google Docs could not load the file. Perhaps it is too large.'

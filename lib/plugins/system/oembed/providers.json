@@ -140,13 +140,6 @@
         "endpoint": "https://www.scribd.com/services/oembed?format={format}&url={url}"
     },
     {
-        "name": "Viddler",
-        "templates": [
-            ".*\\.viddler\\.com/v/.*"
-        ],
-        "endpoint": "https://www.viddler.com/oembed"
-    },
-    {
         "name": "Vimeo",
         "templates": [
             "(www\\.)?vimeo\\.com/.*",
@@ -242,6 +235,14 @@
         "endpoint": "https://publish.twitter.com/oembed"
     },
     {
+        "name": "TikTok photomode",
+        "templates": [
+            "www\\.tiktok\\.com/(@[^\\/]+)\/photo\/(\\d+)"
+        ],
+        "url": "https://www.tiktok.com/{1}/video/{2}",
+        "endpoint": "https://www.tiktok.com/oembed"
+    },
+    {
         "name": "TikTok",
         "templates": [
             "(?:www|t)?\\.tiktok\\.com/@[^\\/]+\/video\/\\d+",
@@ -273,14 +274,6 @@
             "dotsub\\.com/view/.+"
         ],
         "endpoint": "https://dotsub.com/services/oembed"
-    },
-    {
-        "name": "Animoto",
-        "templates": [
-            "animoto\\.com/play/.+"
-        ],
-        "endpoint": "https://animoto.com/oembeds/create.{format}?automated=true&options=start_hq&url={url}"
-
     },
     {
         "name": "Dipdive",
@@ -443,13 +436,6 @@
             "app.widgetic.com/.*"
         ],
         "endpoint": "https://app.widgetic.com/services/oembed/"
-    },
-    {
-        "name": "Adobe Stock",
-        "templates": [
-            "stock.adobe.com/(?:images|stock-photo)/([a-zA-Z0-9-]+\/\\d+)"
-        ],
-        "endpoint": "https://stock.adobe.com/oembed?url=https://stock.adobe.com/stock-photo/{1}"
     },
     {
         "name": "Reddit",
@@ -663,12 +649,19 @@
         ],
         "endpoint": "https://codesandbox.io/oembed"
     }, {
-        "name": "NAVERTV",
+        "name": "Naver TV",
         "templates": [
             "tv.naver.com/.*"
         ],
         "endpoint": "https://tv.naver.com/oembed"
     }, {
+        "name": "Naver Audiobooks",
+        "templates": [
+            "audioclip.naver.com/audiobooks/.*"
+        ],
+        "endpoint": "https://audioclip.naver.com/oembed"
+    },
+    {
         "name": "Verse",
         "templates": [
             "verse.com/.*"
@@ -688,13 +681,6 @@
             "(?:www\\.)?canva.com/design/"
         ],
         "endpoint": "https://api.canva.com/_spi/presentation/_oembed"
-    },
-    {
-        "name": "Microsoft Streams",
-        "templates": [
-            "[a-zA-Z0-9-]+.microsoftstream.com/.*"
-        ],
-        "endpoint": "https://web.microsoftstream.com/oembed"
     },
     {
         "name": "Powr.io",
@@ -937,13 +923,6 @@
         "endpoint": "https://www.mightycause.com/1/oembed"
     },
     {
-        "name": "Kooapp",
-        "templates": [
-            "kooapp.com/koo/.*"
-        ],
-        "endpoint": "https://embed.kooapp.com/services/oembed"
-    },
-    {
         "name": "Observable",
         "templates": [
             "observablehq.com/@*/*",
@@ -1008,13 +987,6 @@
             "portfolium.com/entry/*"
         ],
         "endpoint": "https://api.portfolium.com/oembed"
-    },
-    {
-        "name": "Saooti",
-        "templates": [
-            "octopus.saooti.com/main/pub/podcast/*"
-        ],
-        "endpoint": "https://octopus.saooti.com/oembed"
     },
     {
         "name": "SocialExplorer",
@@ -1150,5 +1122,56 @@
         ],
         "endpoint": "https://api.everviz.com/oembed",
         "url": "https://app.everviz.com/embed/{1}/"
+    },
+    {
+        "name": "Adilo",
+        "templates": [
+            "adilo.bigcommand.com/watch/*",
+            "adilo.bigcommand.com/video/*"            
+        ],
+        "endpoint": "https://adilo.bigcommand.com/web/oembed"
+    },
+    {
+        "name": "Quizizz",
+        "templates": [
+            "quizizz.com/admin/quiz/([a-z0-9]+)/"
+        ],
+        "endpoint": "https://quizizz.com/oembed",
+        "url": "https://quizizz.com/embed/quiz/{1}"
+    },
+    {
+        "name": "run.ply.io",
+        "templates": [
+            "run.ply.io/run/*"
+        ],
+        "endpoint": "https://app-server.ply.io/api/oembed"
+    },
+    {
+        "name": "Wakelet",
+        "templates": [
+            "wakelet.com/wake/*"
+        ],
+        "endpoint": "https://wakelet.com/api/oembed"
+    },
+    {
+        "name": "Wolframcloud",
+        "templates": [
+            "wolframcloud.com/obj/*"
+        ],
+        "endpoint": "https://www.wolframcloud.com/oembed"
+    },
+    {
+        "name": "Polymer",
+        "templates": [
+            "app.polymersearch.com/*/*"
+        ],
+        "endpoint": "https://app.polymersearch.com/api/oembed"
+    },
+    {
+        "name": "Postd.io",
+        "templates": [
+            "postd.io/post/*"
+        ],
+        "endpoint": "https://postd.io/api/services/oembed"
     }
 ]

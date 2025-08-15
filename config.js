@@ -54,8 +54,6 @@
 
         FB_USER_AGENT: 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)',
 
-        ACCEPT_LANGUAGE_SUFFIX: ';q=0.9,en;q=0.7,*;q=0.5',
-
         SKIP_IFRAMELY_RENDERS: false,
         DEFAULT_ASPECT_RATIO: 16 / 9,
         DOC_ASPECT_RATIO: 8.5 / 11,
@@ -82,6 +80,7 @@
             video_mp4: "video/mp4",
             video_ogg: "video/ogg",
             video_webm: "video/webm",
+            video_iso: "video/iso.segment",
             stream_apple_mpegurl: "application/vnd.apple.mpegurl",
             stream_x_mpegurl: "application/x-mpegURL",
             audio_mp3: "audio/mp3",
@@ -348,7 +347,7 @@
             "iframely"
         ],
 
-        KNOWN_VIDEO_SOURCES: /(youtube|youtu|youtube\-nocookie|vimeo|dailymotion|theplatform|jwplatform|jwplayer|cnevids|newsinc|podbean|simplecast|libsyn|wistia|podiant|art19|kaltura|mtvnservices|brightcove|bcove|soundcloud|giphy|viddler|flowplayer|vidible|bandzoogle|podigee|smugmug|facebook|vid|ultimedia|mixcloud|vidyard|youplay|streamable|captivate|mdstrm|mediadelivery|hearstapps|rudo|acast|screen9|spotlightr)\.\w+\//i,
+        KNOWN_VIDEO_SOURCES: /(youtube|youtu|youtube\-nocookie|vimeo|dailymotion|theplatform|jwplatform|jwplayer|cnevids|newsinc|podbean|simplecast|libsyn|wistia|podiant|art19|kaltura|mtvnservices|brightcove|bcove|soundcloud|giphy|flowplayer|vidible|bandzoogle|podigee|smugmug|facebook|vid|ultimedia|mixcloud|vidyard|youplay|streamable|captivate|mdstrm|mediadelivery|hearstapps|rudo|acast|screen9|spotlightr|loom)\.\w+\//i,
 
         OEMBED_RELS_PRIORITY: ["app", "player", "survey", "image", "reader"],
         OEMBED_RELS_MEDIA_PRIORITY: ["player", "survey", "image", "reader", "app"],
