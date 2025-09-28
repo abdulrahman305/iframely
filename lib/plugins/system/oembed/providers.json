@@ -705,13 +705,6 @@
         "endpoint": "https://www.kidoju.com/api/oembed"
     },
     {
-        "name": "VeeR VR",
-        "templates": [
-            "veer.tv/videos/.*"
-        ],
-        "endpoint": "https://api.veer.tv/oembed"
-    },
-    {
         "name": "Screen9",
         "templates": [
             "\\w+\\.screen9\\.tv/.*",
@@ -732,13 +725,6 @@
             "namchey.com/.*"
         ],
         "endpoint": "https://namchey.com/api/oembed"
-    },
-    {
-        "name": "FITE",
-        "templates": [
-            "(?:www\\.)?fite.tv/watch/.*"
-        ],
-        "endpoint": "https://www.fite.tv/oembed"
     },
     {
         "name": "GloriaTV",
@@ -1166,5 +1152,19 @@
             "postd.io/post/*"
         ],
         "endpoint": "https://postd.io/api/services/oembed"
+    },
+    {
+        "name": "Imajize",
+        "templates": [
+            "embed.imajize.com/*"
+        ],
+        "endpoint": "https://app.imajize.com/api/oembed.json"
+    },
+    {
+        "name": "Apple Podcasts",
+        "templates": [
+            "podcasts.apple.com/(?:\\w+/)?podcast/*"
+        ],
+        "endpoint": "https://podcasts.apple.com/api/oembed"
     }
 ]
